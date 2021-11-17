@@ -19,7 +19,7 @@ class CreateTransaksiTable extends Migration
             $table->integer('total');
             $table->integer('jumlah_uang');
             $table->integer('kembalian');
-
+            $table->integer('ppn');
             $table->timestamps();
         });
     }

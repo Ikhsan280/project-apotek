@@ -15,15 +15,16 @@ class CreateBMasukTable extends Migration
     {
         Schema::create('b_masuk', function (Blueprint $table) {
             $table->id();
-            $table->integer('kd_bm');
+            $table->integer('kode_bm');
             $table->bigInteger('barang_id')->unsigned();
+            $table->string('keterangan');
             $table->integer('jumlah');
             $table->integer('harga_total');
             $table->string('user');
             $table->string('supplier');
 
             $table->foreign("barang_id")->references('id')
-            ->on('barang')->onUpdate('cascade')
+            ->on('barangs')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();
         });

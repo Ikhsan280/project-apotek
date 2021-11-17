@@ -1,6 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KategoriController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +26,24 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('test-admin', function () {
+    return view('layouts.admin');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']],
+      function(){
+          Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+          Route::get('/', function () {
+    return view('admin.index');
+});
 
-Auth::routes();
+      });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+      Route::group(['prefix' => 'user', 'middleware' => ['auth']],
+      function(){
+          Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home2');
+      });
+
+Route::resource('kategori', KategoriController::class);
+Route::resource('barang', BarangController::class);
+
