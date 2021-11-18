@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BkeluarController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiController;
+
 
 
 /*
@@ -46,4 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']],
 
 Route::resource('kategori', KategoriController::class);
 Route::resource('barang', BarangController::class);
+Route::resource('bkeluar', BkeluarController::class);
+Route::resource('trans', TransaksiController::class);
+
 

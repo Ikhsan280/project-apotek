@@ -20,13 +20,13 @@ class CreateBMasukTable extends Migration
             $table->string('keterangan');
             $table->integer('jumlah');
             $table->integer('harga_total');
-            $table->string('user');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('supplier');
+
 
             $table->foreign("barang_id")->references('id')
             ->on('barangs')->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

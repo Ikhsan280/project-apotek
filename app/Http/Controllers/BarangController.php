@@ -15,7 +15,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::with('author')->get();
+        $barang = Barang::with('kategori')->get();
         return view('admin.barang.index', compact('barang'));
     }
 
@@ -38,28 +38,28 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id' => 'required|unique:barangs',
-            'kode_barang' => 'required',
-            'nama_barang' => 'required',
-            'jumlah' => 'required',
-            'harga_beli' => 'required',
-            'harga_jual' => 'required',
-            'kategori_id' => 'required',
-            'gambar' => 'required|image|max:2048',
-            'keterangan' => 'required',
-        ]);
+        // $request->validate([
+        //     'id' => 'required|unique:barangs',
+        //     'kode_barang' => 'required',
+        //     'nama_barang' => 'required',
+        //     'jumlah' => 'required',
+        //     'harga_beli' => 'required',
+        //     'harga_jual' => 'required',
+        //     'kategori_id' => 'required',
+        //     'gambar' => 'required|image|max:2048',
+        //     'keterangan' => 'required',
+        // ]);
 
         $barang = new Barang;
-        $barang->id = $request->id;
+        // $barang->id = $request->id;
         $barang->kode_barang = $request->kode_barang;
         $barang->nama_barang = $request->nama_barang;
         $barang->jumlah = $request->jumlah;
         $barang->harga_beli = $request->harga_beli;
         $barang->harga_jual = $request->harga_jual;
         $barang->kategori_id = $request->kategori_id;
-        $barang->gambar = $request->gambar;
-        $barang->keterangan = $request->keterangan;
+
+
         // upload image / foto
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
@@ -67,7 +67,8 @@ class BarangController extends Controller
             $image->move('images/barang/', $name);
             $barang->gambar = $name;
         }
-        $barang->jumlah = $request->jumlah;
+
+        $barang->keterangan = $request->keterangan;
         $barang->save();
         return redirect()->route('barang.index');
     }
@@ -150,9 +151,9 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $book = Barang::findOrFail($id);
-        $book->deleteImage();
-        $book->delete();
+        $barang = Barang::findOrFail($id);
+        $barang->deleteImage();
+        $barang->delete();
         return redirect()->route('barang.index');
     }
 }

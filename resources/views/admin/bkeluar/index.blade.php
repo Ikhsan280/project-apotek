@@ -26,30 +26,31 @@
                             <table class="table">
                                 <tr>
                                     <th>Id</th>
-                                    <th>kode Barang</th>
-                                    <th>Nama Barang</th>
+                                    <th>kode Barang Masuk</th>
+                                    <th>Barang ID</th>
+                                    <th>Kode transaksi</th>
                                     <th>Jumlah</th>
-                                    <th>Harga Beli</th>
-                                    <th>Harga Jual</th>
-                                    <th>Kategori</th>
-                                    <th>Gambar</th>
-                                    <th>Keterangan</th>
+                                    <th>Harga Total</th>
+                                    <th>User</th>
+                                    <th>Supplier</th>
+                                    <th>Diskon</th>
 
                                 </tr>
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($barang as $data)
+                                @foreach ($bkeluar as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->kode_barang }}</td>
-                                        <td>{{ $data->nama_barang }}</td>
+                                        <td>{{ $data->kode_bm }}</td>
+                                        <td>{{ $data->barang_id }}</td>
+                                        <td>{{ $data->kode_trans}}</td>
                                         <td>{{ $data->jumlah }}</td>
-                                        <td>{{ $data->harga_beli }}</td>
-                                        <td>{{ $data->harga_jual }}</td>
-                                        <td>{{ $data->kategori->nama_kategori }}</td>
-                                        <td><img src="{{$data->image()}}" alt="" style="width:80px; height:50px;" alt="Gambar"></td>
-                                        <td>{{ $data->keterangan }}</td>
+                                        <td>{{ $data->harga_total }}</td>
+                                        <td>{{ $data->user }}</td>
+                                        <td>{{ $data->Supplier }}</td>
+                                        <td>{{ $data->diskon }}</td>
+
 
                                         <td>
                                             <form action="{{ route('barang.destroy', $data->id) }}" method="post">

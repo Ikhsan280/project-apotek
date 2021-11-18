@@ -16,13 +16,13 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Data Obat</div>
+                <div class="card-header">Data Barang</div>
                 <div class="card-body">
                    <form action="{{route('barang.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Masukan Kode Barang</label>
-                            <input type="number" name="title" class="form-control @error('kode_barang') is-invalid @enderror">
+                            <input type="number" name="kode_barang" class="form-control @error('kode_barang') is-invalid @enderror">
                              @error('kode_barang')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

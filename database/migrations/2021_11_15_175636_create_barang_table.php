@@ -24,10 +24,11 @@ class CreateBarangTable extends Migration
             $table->string('gambar');
             $table->string('keterangan');
 
+
             $table->foreign("kategori_id")->references('id')
             ->on('kategoris')->onUpdate('cascade')
             ->onDelete('cascade');
-
+            $table->timestamps();
         });
     }
 

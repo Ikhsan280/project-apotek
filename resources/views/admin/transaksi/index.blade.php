@@ -25,16 +25,25 @@
                         <table class="table">
                             <tr>
                                 <th><i>Id</i></th>
-                                <th><i>Kode Kategori</i></th>
-                                <th><i>Namat Kategori</i></th>
-                                <th><i>Aksi</i></th>
+                                <th><i>Kode Transaksi</i></th>
+                                <th><i>Total</i></th>
+                                <th><i>Jumlah Uang</i></th>
+                                <th><i>Kembalian</i></th>
+                                <th><i>PPN</i></th>
+
+
                             </tr>
                             @php $no=1; @endphp
-                            @foreach ($kategori as $data)
+                            @foreach ($transaksi as $data)
                              <tr>
                                  <td>{{$no++}}</td>
+                                 <td>{{$data->kode_transaksi}}</td>
+                                 <td>{{$data->total}}</td>
                                  <td>{{$data->kd_kategori}}</td>
-                                 <td>{{$data->nama_kategori}}</td>
+                                 <td>{{$data->jumlah_uang}}</td>
+                                 <td>{{$data->kembalian}}</td>
+                                 <td>{{$data->ppn}}</td>
+
 
 
 
